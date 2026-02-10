@@ -6,36 +6,37 @@ const Home = () => {
     <div className="flex flex-col min-h-screen">
       
       {/* HERO SECTION */}
-      <section className="relative bg-slate-900 text-white overflow-hidden">
+      <section className="relative bg-slate-900 text-white overflow-hidden py-24 md:py-32">
         {/* Abstract Background Shapes */}
         <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-blue-600 opacity-20 blur-3xl"></div>
         <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-purple-600 opacity-20 blur-3xl"></div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-6xl font-serif font-bold tracking-tight leading-tight mb-6">
-              Justice shouldn't come with a price tag.
-            </h1>
-            <p className="text-xl text-blue-100 mb-8 leading-relaxed max-w-2xl">
-              States collect millions from low-income families in the foster care system, undermining reunification and keeping families in debt. We visualize the data to advocate for change.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link to="/map" className="flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-bold transition shadow-lg hover:shadow-blue-500/25">
-                View the Maps <ArrowRight size={20} />
-              </Link>
-              <Link to="/about" className="flex items-center gap-2 px-8 py-4 bg-transparent border border-slate-600 hover:bg-slate-800 text-white rounded-full font-bold transition">
-                Learn the Issue
-              </Link>
-            </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl md:text-6xl font-serif font-bold tracking-tight leading-tight mb-6">
+            Justice shouldn't come with a price tag.
+          </h1>
+          <p className="text-xl text-blue-100 mb-10 leading-relaxed max-w-3xl mx-auto">
+            States collect millions from low-income families in the foster care system, undermining reunification and keeping families in debt. We visualize the data to advocate for change.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link to="/map" className="flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-bold transition shadow-lg hover:shadow-blue-500/25">
+              View the Maps <ArrowRight size={20} />
+            </Link>
+            <Link to="/about" className="flex items-center gap-2 px-8 py-4 bg-transparent border border-slate-600 hover:bg-slate-800 text-white rounded-full font-bold transition">
+              Learn the Issue
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* FEATURE CARDS */}
+      {/* FEATURE CARDS (Now separated from Hero) */}
       <section className="py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 -mt-32">
-            
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-serif font-bold text-slate-900">Explore the Platform</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <FeatureCard 
               icon={<MapIcon size={32} className="text-blue-600" />}
               title="Interactive Maps"
@@ -56,13 +57,12 @@ const Home = () => {
               desc="Deep dives into legislation, reports, and advocacy tools for your specific state."
               link="/state-resources"
             />
-            
           </div>
         </div>
       </section>
 
       {/* MISSION / STATS SECTION */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
@@ -103,14 +103,13 @@ const Home = () => {
           </div>
         </div>
       </section>
-
     </div>
   );
 };
 
 const FeatureCard = ({ icon, title, desc, link }) => (
-  <Link to={link} className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-slate-100 flex flex-col items-start group">
-    <div className="p-3 bg-slate-50 rounded-lg mb-6 group-hover:scale-110 transition-transform">
+  <Link to={link} className="bg-white p-8 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 flex flex-col items-center text-center group">
+    <div className="p-4 bg-blue-50 rounded-full mb-6 group-hover:scale-110 transition-transform">
       {icon}
     </div>
     <h3 className="text-xl font-bold text-slate-900 mb-3">{title}</h3>
