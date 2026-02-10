@@ -1,6 +1,6 @@
 // frontend/src/pages/StateResources.jsx
 import { useState } from 'react';
-import { Search, MapPin, FileText, ArrowRight } from 'lucide-react';
+import { Search, MapPin, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const STATES = [
@@ -21,49 +21,57 @@ const StateResources = () => {
     state.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Helper to turn "New York" into "new-york" for the URL
+  const getStateSlug = (stateName) => stateName.toLowerCase().replace(/\s+/g, '-');
+
   return (
     <div className="min-h-screen bg-slate-50 font-sans">
       
-      {/* Header Section */}
-      <div className="bg-slate-900 py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-3xl md:text-5xl font-serif font-bold text-white mb-6">
+      <div className="relative bg-slate-900 py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="absolute inset-0">
+          <img 
+            src="https://familiesnotfees.wordpress.com/wp-content/uploads/2024/10/image-1.jpeg" 
+            className="w-full h-full object-cover opacity-20" 
+            alt="State Resources Background" 
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-slate-900/10" />
+        </div>
+        
+        <div className="relative max-w-4xl mx-auto text-center">
+          <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6 tracking-tight">
             State Resources
           </h1>
           <p className="text-xl text-blue-100 max-w-2xl mx-auto leading-relaxed">
-            Access detailed reports, legislation, and advocacy tools for individual states.
+            Resources on child support enforcement by state. Access detailed reports, legislation, and advocacy tools.
           </p>
         </div>
       </div>
 
-      {/* Search & Grid Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         
-        {/* Search Bar */}
         <div className="max-w-xl mx-auto mb-16 relative">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
             <Search className="h-5 w-5 text-slate-400" />
           </div>
           <input
             type="text"
-            className="block w-full pl-10 pr-3 py-4 border border-slate-200 rounded-full leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm shadow-sm transition-all"
-            placeholder="Search for your state..."
+            className="block w-full pl-12 pr-4 py-4 border border-slate-200 rounded-full leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-base shadow-sm transition-all"
+            placeholder="Find your state..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
 
-        {/* State Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filteredStates.map((state) => (
             <Link 
               key={state} 
-              to="#" // Placeholder link - we can route this to specific state pages later
-              className="group bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-between"
+              to={`/state/${getStateSlug(state)}`} // Dynamic Link
+              className="group bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-between"
             >
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-slate-50 text-slate-400 rounded-lg group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors">
-                  <MapPin size={20} />
+                  <MapPin size={18} />
                 </div>
                 <span className="font-bold text-slate-700 group-hover:text-slate-900">{state}</span>
               </div>
@@ -72,7 +80,6 @@ const StateResources = () => {
           ))}
         </div>
 
-        {/* No Results State */}
         {filteredStates.length === 0 && (
           <div className="text-center py-20">
             <div className="inline-flex items-center justify-center p-4 bg-slate-100 rounded-full mb-4">

@@ -9,8 +9,9 @@ import About from './pages/About';
 import PolicyBasics from './pages/PolicyBasics';
 import Media from './pages/Media';
 import StateResources from './pages/StateResources';
+import StateDetail from './pages/StateDetail'; // <--- Import New Component
 import Research from './pages/Research';
-import HowToHelp from './pages/HowToHelp'; // <--- New Import
+import HowToHelp from './pages/HowToHelp';
 
 const Layout = () => (
   <div className="flex flex-col min-h-screen">
@@ -32,8 +33,9 @@ function App() {
           <Route path="/map" element={<Maps />} />
           <Route path="/media" element={<Media />} />
           <Route path="/state-resources" element={<StateResources />} />
+          <Route path="/state/:stateId" element={<StateDetail />} /> {/* <--- Dynamic Route */}
           <Route path="/research" element={<Research />} />
-          <Route path="/how-to-help" element={<HowToHelp />} /> {/* <--- New Route */}
+          <Route path="/how-to-help" element={<HowToHelp />} />
           <Route path="/about" element={<About />} />
           <Route path="/insights" element={<Insights />} />
         </Route>
