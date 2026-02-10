@@ -8,7 +8,10 @@ const Insights = () => {
 
   useEffect(() => {
     // Fetch data from your FastAPI backend
-    fetch('http://127.0.0.1:8000/api/summary')
+
+    const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+
+    fetch(`${API_URL}/api/summary`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
